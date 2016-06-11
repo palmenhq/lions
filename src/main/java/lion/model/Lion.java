@@ -1,11 +1,19 @@
 package lion.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.PersistenceConstructor;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "lion")
 public class Lion
 {
-    public Integer id;
+    @Id
+    public String id;
+
     public String name;
     public String sex;
 
+    @PersistenceConstructor
     public Lion(String name, String sex) {
         this.name = name;
         this.sex = sex;
@@ -13,12 +21,14 @@ public class Lion
 
     public Lion() {}
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public Lion setId(String id) {
         this.id = id;
+
+        return this;
     }
 
     public String getName() {
